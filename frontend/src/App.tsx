@@ -14,9 +14,6 @@ function DefaultLayout() {
   );
 }
 
-//vi fixar dark mode sen 
-
-
 export default function App() {
   return (
       <Router>

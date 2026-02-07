@@ -1,50 +1,5 @@
 @import "tailwindcss";
 
-/*DEFUALT CSS*/
-/*
-.first-letter {
-    color: rgb(255, 255, 255);
-    font-size:x-large;
-}*/
-
-.nav-content {
-    position: relative;
-    /* Position text and button above the overlay */
-    z-index: 2;
-    /* Ensures this is above the overlay */
-}
-
-.button {
-    position: relative;
-    z-index: 3;
-    /* Ensure the button is above everything else */
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-    display: none;
-}
-
-.scrollbar-hide {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
-}
-
-/*BACKGROUND COLORS*/
-
-.gradient-bg {
-    background: linear-gradient(to top right, #9333ea, #1e3a8a, #9333ea,
-        #1e3a8a);
-    /* Indigo to purple */
-}
-
-.header-gradient-bg {
-    background: linear-gradient(to right, rgba(147, 51, 234, 0.1), rgba(30, 58, 138, 0.1), rgba(30, 58, 138, 0.1));
-    backdrop-filter: blur(10px);
-    /* Purple to Indigo with 10% opacity */
-}
-
 /*UNDERLINE ANIMATION*/
 
 .underline-animation {
@@ -56,303 +11,47 @@
     content: '';
     position: absolute;
     left: 50%;
-    /* Start in the center */
     bottom: -2px;
-    /* Adjust this to fine-tune the distance from the text */
     width: 0;
     height: 2px;
-    /* Thickness of the underline */
     background-color: white;
-    /* Underline color */
     transform: translateX(-50%);
-    /* Move the underline to be centered */
     transition: all 0.4s ease;
 }
 
 .underline-animation:hover::after {
     width: 100%;
     left: 50%;
-    /* Stretch the underline to the left */
 }
 
-/*TEXT ANIMATIONS*/
+/* Profile Ring */
 
-@keyframes textShadowGrow {
-    0% {
-        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-        /* Initial small shadow */
-    }
+@property --ring-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
 
-    50% {
-        text-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
-        /* Larger shadow */
-    }
-
-    100% {
-        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-        /* Return to small shadow */
+@keyframes ringRotate {
+    to {
+        --ring-angle: 360deg;
     }
 }
 
-.text-shadow-grow {
-    animation: textShadowGrow 3.5s ease-in infinite;
-    /* 1.5s duration, infinite loop */
+.profile-ring {
+    background: conic-gradient(
+        from var(--ring-angle),
+        transparent 0%,
+        rgba(20, 60, 120, 0.4) 10%,
+        rgba(30, 100, 180, 0.7) 20%,
+        rgba(60, 160, 220, 0.8) 30%,
+        rgba(30, 100, 180, 0.7) 40%,
+        rgba(20, 60, 120, 0.4) 50%,
+        transparent 60%
+    );
+    animation: ringRotate 3s linear infinite;
 }
 
-/*BUTTON ANIMATION*/
-
-@keyframes shadowAnimation {
-    0% {
-        box-shadow: 0 0 40px 8px rgba(255, 255, 255, 0.6);
-    }
-
-    25% {
-        box-shadow: 0 0 40px 8px rgba(126, 126, 147, 0.6);
-    }
-
-    50% {
-        box-shadow: 0 0 40px 8px rgba(255, 255, 255, 0.6);
-    }
-
-    75% {
-        box-shadow: 0 0 40px 8px rgba(126, 126, 147, 0.6);
-    }
-
-    100% {
-        box-shadow: 0 0 40px 8px rgba(255, 255, 255, 0.6);
-    }
-}
-
-.button-animated-shadow {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    z-index: 4;
-    /* Increased to ensure it's above other elements */
-}
-
-.button-animated-shadow:hover {
-    animation: shadowAnimation 3s linear infinite;
-}
-
-/*HALF-CIRCLE ANIMATION*/
-
-@keyframes slideInFromLeft {
-    0% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-
-    10% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-.scroll-in-left {
-    animation: slideInFromLeft 1s ease-out forwards;
-}
-
-/*CARD ANIMATION*/
-/* CARD ANIMATION */
-@keyframes slideInFromRight {
-    0% {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-.card {
-    opacity: 0;
-    transform: translateX(50px);
-    transition: transform 0.6s ease-in, opacity 0.6s;
-}
-
-.scroll-in-right-card {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/*BALLS ANIMATION*/
-@keyframes bounce-custom {
-
-    0%,
-    100% {
-        transform: translateY(0);
-        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-    }
-
-    50% {
-        transform: translateY(-25%);
-        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-    }
-}
-
-.bounce-delay-0 {
-    animation: bounce-custom 1s infinite;
-}
-
-.bounce-delay-1 {
-    animation: bounce-custom 1s infinite;
-    animation-delay: 0.2s;
-}
-
-.bounce-delay-2 {
-    animation: bounce-custom 1s infinite;
-    animation-delay: 0.4s;
-}
-
-/*NAV-SLIDEIN ANIMATION*/
-@keyframes slideInFromLeft {
-    0% {
-        transform: translateX(-100px);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-.nav-slide-in {
-    animation: slideInFromLeft 0.8s ease-out forwards;
-}
-
-/*COMMICBOOK-BUBBLES*/
-.bubble-cloud {
-    position: relative;
-    border-radius: 50% / 30%;
-    padding: 1rem;
-    box-shadow: 3px 3px 0 black;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    background: linear-gradient(to bottom, #fff9c4, #fff176);
-    /* soft comic effect */
-}
-
-.bubble-cloud:nth-of-type(2) {
-    background: linear-gradient(to bottom, #c8facc, #81c784);
-}
-
-.bubble-tail-cloud-left {
-    position: absolute;
-    left: -20px;
-    bottom: 15px;
-    width: 0;
-    height: 0;
-    border: 10px solid transparent;
-    border-right: 20px solid black;
-}
-
-.bubble-tail-cloud-left::before {
-    content: '';
-    position: absolute;
-    left: 2px;
-    top: -8px;
-    width: 0;
-    height: 0;
-    border: 9px solid transparent;
-    border-right: 18px solid inherit;
-}
-
-/*CARD-SLIDER ANIMATION*/
-
-.slider-container {
-    overflow: hidden;
-    width: 100%;
-    padding: 2.5rem 1.25rem;
-    position: relative;
-}
-
-.slider-container::before,
-.slider-container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 20px;
-    height: 40%;
-    transform: translatey(75%);
-    z-index: 10;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    pointer-events: none;
-}
-
-.slider-container::before {
-    left: 0;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), transparent);
-
-}
-
-.slider-container::after {
-    right: 0;
-    background: linear-gradient(to left, rgba(0, 0, 0, 0.8), transparent);
-}
-
-.slider-track {
-    display: flex;
-    gap: 1.5rem;
-    width: max-content;
-    /* Let it grow with content */
-    animation: scrollLoop 40s linear infinite;
-}
-
-.card-item {
-    flex: 0 0 auto;
-    /* Prevent shrinking */
-    width: 300px;
-    min-height: 150px;
-    padding: 1.5rem;
-    background-color: #0d1522;
-    color: #e5e7eb;
-    box-shadow: 0px 40px 30px rgb(0, 0, 0);
-    border-radius: 0.75rem;
-    transition: transform 0.3s, box-shadow 0.3s;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Vertically center */
-    align-items: center; /* Horizontally center */
-    text-align: center; /* Ensure the text is centered within the card */
-}
-
-.card-item:hover {
-    transform: scale(1.15);
-    background-color: rgb(31, 35, 49);
-    border: 2px solid white;
-
-    /* Slightly stronger shadow on hover */
-}
-
-/* Pause animation when any card is hovered */
-.slider-track:hover {
-    animation-play-state: paused;
-}
-
-@keyframes scrollLoop {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-.scroll-spacer {
-    width: 0px;
-    flex: 0 0 auto;
-}
 
 /* ScaleInJob */
 
@@ -386,4 +85,32 @@
 
 .animate-scale-out {
     animation: scaleOut 0.3s ease-out forwards;
+}
+
+/* Text fade in */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Work section — hide scrollbar */
+
+.work-scroll {
+    scrollbar-width: none;
+}
+
+.work-scroll::-webkit-scrollbar {
+    display: none;
 }
