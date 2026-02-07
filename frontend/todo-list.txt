@@ -1,0 +1,9 @@
+polera texten
+
+ändra så att z- är standard inte -z-
+
+gör så att man enkelt can kopiera in en ny jobItem och kunna ändra färg
+
+fixa animation på jobItem 
+
+gör klart animationen

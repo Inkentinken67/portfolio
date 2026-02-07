@@ -1,0 +1,71 @@
+import NanoEdgeHem from "../assets/NanoEdge_Hem.webp";
+
+const ScrollMessageViewer = () => {
+  const messages = [
+    "Message 1: Welcome to our platform!",
+    "Message 2: We offer blazing fast hosting.",
+    "Message 3: Reach out for support anytime.",
+  ];
+
+  const images = [NanoEdgeHem, NanoEdgeHem, NanoEdgeHem]; // Replace with your images
+
+  const itemHeight = 300; // height for message and image
+  const marginBottom = 0;
+  const headerHeight = 60; // height of your fixed/static header
+
+  return (
+    <div className="h-[2000px]">
+      <div className="bg-white h-[300px]">
+        {/* Your header content if any */}
+      </div>
+      <div className="flex max-w-6xl mx-auto my-24 min-h-[900px]">
+        {/* Left side: static stacked images */}
+        <div className="w-1/2 flex flex-col space-y-8">
+          {images.map((src, index) => (
+            <div
+              key={index}
+              style={{ height: itemHeight }}
+              className="overflow-hidden rounded-lg shadow-lg"
+            >
+              <img
+                src={src}
+                alt={`Image ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Right side: messages sticky one by one */}
+        <div className="w-1/2 flex flex-col relative bg-transparent z-0">
+          {messages.map((msg, index) => (
+            <div
+              key={index}
+              style={{
+                position: "sticky",
+                top: headerHeight + 10, // 10px extra margin so it doesn't touch header exactly
+                height: itemHeight,
+                marginBottom: marginBottom,
+                display: "flex",
+                alignItems: "start",
+                justifyContent: "center",
+                padding: "3rem 1.5rem",
+              }}
+              className="text-xl font-bold bg-slate-950 text-white rounded-lg"
+            >
+              {msg}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom div with higher z-index and relative position */}
+      <div className="relative z-10 bg-white h-[300px] w-full">
+        {/* Content that should appear above the right side black background */}
+      </div>
+    </div>
+  );
+
+};
+
+export default ScrollMessageViewer;
