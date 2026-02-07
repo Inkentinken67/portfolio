@@ -1,13 +1,12 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 import Home from './pages/Home.tsx';
-import Header from './components/Header.tsx'
+// import Header from './components/Header.tsx'
 import Footer from './components/Footer.tsx'
 
 function DefaultLayout() {
   return (
-    <div className="flex flex-col min-h-screen antialiased font-sans bg-slate-950 [&::-webkit-scrollbar-thumb]:bg-neutral-500">
-      <Header />
+    <div className="h-screen overflow-y-auto scroll-smooth antialiased font-sans bg-slate-950 work-scroll">
+      {/* <Header /> */}
       <Outlet />
       <Footer />
     </div>

@@ -1,29 +1,5 @@
 @import "tailwindcss";
 
-/*UNDERLINE ANIMATION*/
-
-.underline-animation {
-    position: relative;
-    display: inline-block;
-}
-
-.underline-animation::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: -2px;
-    width: 0;
-    height: 2px;
-    background-color: white;
-    transform: translateX(-50%);
-    transition: all 0.4s ease;
-}
-
-.underline-animation:hover::after {
-    width: 100%;
-    left: 50%;
-}
-
 /* Profile Ring */
 
 @property --ring-angle {
@@ -53,59 +29,7 @@
 }
 
 
-/* ScaleInJob */
-
-@keyframes scaleIn {
-    0% {
-        transform: scale(0.7);
-        opacity: 0;
-    }
-
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes scaleOut {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    100% {
-        transform: scale(0.7);
-        opacity: 0;
-    }
-}
-
-.animate-scale-in {
-    animation: scaleIn 0.7s ease-in forwards;
-}
-
-.animate-scale-out {
-    animation: scaleOut 0.3s ease-out forwards;
-}
-
-/* Text fade in */
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-fade-in {
-    animation: fadeIn 0.4s ease-out forwards;
-}
-
-/* Work section — hide scrollbar */
+/* Hide scrollbar */
 
 .work-scroll {
     scrollbar-width: none;
@@ -113,4 +37,24 @@
 
 .work-scroll::-webkit-scrollbar {
     display: none;
+}
+
+/* Scroll-driven project entrance */
+
+@keyframes projectEnter {
+    from {
+        opacity: 0;
+        transform: translateY(60px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.project-content {
+    animation: projectEnter linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
 }

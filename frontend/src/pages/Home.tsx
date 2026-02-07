@@ -71,7 +71,7 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <main className="m-0 p-0 overflow-hidden">
+    <main className="m-0 p-0">
       {/* === Hero Section === */}
       <section className="relative min-h-screen flex items-center justify-center text-center bg-gradient-to-b from-black to-slate-950">
         <div className="absolute -z-10 inset-0 h-full w-full
@@ -119,87 +119,89 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* === Work Section === */}
-      <section id="work" className="h-screen overflow-y-auto snap-y snap-mandatory work-scroll overscroll-contain">
-        {projects.map((project, index) => (
-          <div key={index} className="h-screen snap-start flex items-center shrink-0">
-            <div className="flex gap-10 px-6 lg:px-15 w-full">
-              {/* Image card */}
-              <div className="lg:w-2/3">
-                <a
-                  href="#"
-                  draggable={false}
-                  className="relative block cursor-pointer overflow-hidden rounded-2xl border border-gray-100/30 bg-[#1b151571] p-1.5 shadow-2xl lg:h-[520px] lg:rounded-3xl lg:p-2"
+      {/* === Project Sections === */}
+      {projects.map((project, index) => (
+        <section
+          key={index}
+          id={index === 0 ? "work" : undefined}
+          className="h-screen flex items-center bg-slate-950"
+        >
+          <div className="project-content flex gap-10 px-6 lg:px-15 w-full">
+            {/* Image card */}
+            <div className="lg:w-2/3">
+              <a
+                href="#"
+                draggable={false}
+                className="relative block cursor-pointer overflow-hidden rounded-2xl border border-gray-100/30 bg-[#1b151571] p-1.5 shadow-2xl lg:h-[520px] lg:rounded-3xl lg:p-2"
+              >
+                <div
+                  className="absolute inset-x-0 top-0 h-[1.5px]"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, rgba(0, 0, 0, 0) 5%, rgba(255, 255, 255, 0.8) 35%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.8) 65%, rgba(0, 0, 0, 0) 95%)",
+                  }}
+                />
+                <div
+                  className="group relative flex size-full flex-col items-center justify-between overflow-hidden rounded-xl lg:rounded-2xl"
+                  style={{
+                    background: `linear-gradient(0deg, white 0%, black 5%, ${project.backgroundColor} 100%)`,
+                  }}
                 >
                   <div
-                    className="absolute inset-x-0 top-0 h-[1.5px]"
+                    className="absolute inset-x-0 top-px z-0 h-[1px]"
                     style={{
                       background:
-                        "linear-gradient(90deg, rgba(0, 0, 0, 0) 5%, rgba(255, 255, 255, 0.8) 35%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.8) 65%, rgba(0, 0, 0, 0) 95%)",
+                        "linear-gradient(90deg, rgba(0, 0, 0, 0) 20%, rgb(255, 255, 255) 50%, rgba(0, 0, 0, 0) 80%)",
                     }}
                   />
-                  <div
-                    className="group relative flex size-full flex-col items-center justify-between overflow-hidden rounded-xl lg:rounded-2xl"
-                    style={{
-                      background: `linear-gradient(0deg, white 0%, black 5%, ${project.backgroundColor} 100%)`,
-                    }}
-                  >
-                    <div
-                      className="absolute inset-x-0 top-px z-0 h-[1px]"
-                      style={{
-                        background:
-                          "linear-gradient(90deg, rgba(0, 0, 0, 0) 20%, rgb(255, 255, 255) 50%, rgba(0, 0, 0, 0) 80%)",
-                      }}
-                    />
-                    <div className={`hidden w-full flex-row items-center justify-between px-12 py-8 lg:flex text-${project.textColor} z-1`}>
-                      <h3 className="max-w-[90%] text-2xl font-medium">{project.imageTitle}</h3>
-                      <ArrowRightIcon className="size-5" strokeWidth={3} />
-                    </div>
-                    <img
-                      src={project.image}
-                      alt={project.textTitle}
-                      className="lg:group-hover:translate-y-10 w-full max-w-[85%] translate-z-0 rounded-t-lg border-[1px] border-white border-b-0 transition-all duration-300 will-change-transform lg:group-hover:scale-[1.08] lg:group-hover:-rotate-3"
-                      style={{ color: "transparent", boxShadow: `0 0 30px ${project.imageShadow}` }}
-                    />
+                  <div className={`hidden w-full flex-row items-center justify-between px-12 py-8 lg:flex text-${project.textColor} z-1`}>
+                    <h3 className="max-w-[90%] text-2xl font-medium">{project.imageTitle}</h3>
+                    <ArrowRightIcon className="size-5" strokeWidth={3} />
                   </div>
-                </a>
-              </div>
-
-              {/* Text panel */}
-              <div className="hidden lg:flex lg:w-1/3 flex-col justify-center">
-                <div className="relative p-4 bg-transparent text-white rounded-lg">
-                  <span
-                    className={`text-2xl font-bold underline decoration-[${project.textTitleUnderline}] decoration-[2px] underline-offset-[6px]`}
-                  >
-                    {project.textTitle}
-                  </span>
-                  <p className="pt-2">{project.description}</p>
-                  <ul className="mt-2 space-y-2 text-sm pt-4 pb-4">
-                    {project.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2">
-                        {project.colorEmoji} <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  {project.techStack.length > 0 && (
-                    <div className="mt-10 flex flex-wrap gap-3 text-sm">
-                      {project.techStack.map((tech, i) => (
-                        <div
-                          key={i}
-                          className="flex flex-row text-gray-200 items-center gap-2 rounded-xl border border-white/[0.14] bg-neutral-900 px-3 py-1 text-sm"
-                        >
-                          <img height="18" width="18" alt={tech.name} src={tech.iconSrc} />
-                          {tech.name}
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  <img
+                    src={project.image}
+                    alt={project.textTitle}
+                    className="lg:group-hover:translate-y-10 w-full max-w-[85%] translate-z-0 rounded-t-lg border-[1px] border-white border-b-0 transition-all duration-300 will-change-transform lg:group-hover:scale-[1.08] lg:group-hover:-rotate-3"
+                    style={{ color: "transparent", boxShadow: `0 0 30px ${project.imageShadow}` }}
+                  />
                 </div>
+              </a>
+            </div>
+
+            {/* Text panel */}
+            <div className="hidden lg:flex lg:w-1/3 flex-col justify-center">
+              <div className="relative p-4 bg-transparent text-white rounded-lg">
+                <span
+                  className={`text-2xl font-bold underline decoration-[${project.textTitleUnderline}] decoration-[2px] underline-offset-[6px]`}
+                >
+                  {project.textTitle}
+                </span>
+                <p className="pt-2">{project.description}</p>
+                <ul className="mt-2 space-y-2 text-sm pt-4 pb-4">
+                  {project.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center gap-2">
+                      {project.colorEmoji} <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                {project.techStack.length > 0 && (
+                  <div className="mt-10 flex flex-wrap gap-3 text-sm">
+                    {project.techStack.map((tech, i) => (
+                      <div
+                        key={i}
+                        className="flex flex-row text-gray-200 items-center gap-2 rounded-xl border border-white/[0.14] bg-neutral-900 px-3 py-1 text-sm"
+                      >
+                        <img height="18" width="18" alt={tech.name} src={tech.iconSrc} />
+                        {tech.name}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>
-        ))}
-      </section>
+        </section>
+      ))}
 
       <div className="h-30 flex justify-center items-center text-gray-200">
         <div className="inline-flex items-center gap-1 justify-center text-gray-400 hover:text-white transition-colors">
