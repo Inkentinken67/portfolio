@@ -5,7 +5,7 @@ import Footer from './components/Footer.tsx'
 
 function DefaultLayout() {
   return (
-    <div className="h-screen overflow-y-auto scroll-smooth antialiased font-sans bg-slate-950 work-scroll">
+    <div className="h-screen overflow-y-auto scroll-smooth antialiased font-sans bg-blue-white work-scroll">
       {/* <Header /> */}
       <Outlet />
       <Footer />
