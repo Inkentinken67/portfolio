@@ -34,7 +34,7 @@ type Skill = {
 const skills: Skill[] = [
   { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript", description: "Använder TypeScript dagligen för att skriva typsäker kod i både frontend- och backend-projekt. Typsystemet hjälper mig att fånga buggar tidigt och skriva mer underhållbar kod." },
   { name: "HTML", icon: "https://cdn.simpleicons.org/html5", description: "Stark grund i semantisk HTML. Förstår tillgänglighet, SEO-struktur och hur korrekt markup samverkar med CSS och JavaScript." },
-  { name: "CSS", icon: "https://cdn.simpleicons.org/css3", description: "Bekväm med modern CSS inklusive flexbox, grid, animationer och custom properties. Vet när man ska skriva CSS för hand och när man ska använda ett ramverk." },
+  { name: "CSS", icon: "https://cdn.simpleicons.org/css/1572B6", description: "Bekväm med modern CSS inklusive flexbox, grid, animationer och custom properties. Vet när man ska skriva CSS för hand och när man ska använda ett ramverk." },
   { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript", description: "Solid förståelse för JavaScript-grunder: asynkron programmering, closures, prototyper och DOM-manipulation. Grunden för allt jag bygger på webben." },
   { name: "React", icon: "https://cdn.simpleicons.org/react", description: "Bygger komponenter med hooks, hanterar state och arbetar med React Router och Context API. Det här projektet är byggt med React." },
   { name: "Tailwind", icon: "https://cdn.simpleicons.org/tailwindcss", description: "Föredrar Tailwind för snabb UI-utveckling. Använder det i alla mina nuvarande projekt och uppskattar hur det håller stilarna konsekventa utan att behöva byta fil." },
@@ -48,6 +48,7 @@ const skills: Skill[] = [
   { name: "Docker", icon: "https://cdn.simpleicons.org/docker", description: "Containeriserar applikationer med Docker och skriver Dockerfiles och Compose-filer. Använder det för att säkerställa konsekventa miljöer mellan utveckling och produktion." },
 ];
 
+
 const navLinks = [
   { href: "/", label: "Hem" },
   { href: "#work", label: "Projekt" },
@@ -58,12 +59,13 @@ const navLinks = [
 const Home: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
+  const [orbSkill, setOrbSkill] = useState<Skill>(skills.find(s => s.name === 'HTML')!);
 
   return (
     <main className="m-0 p-0 bg-gray-50">
 
       {/* === Hero Section === */}
-      <section className="relative min-h-screen flex items-center justify-center text-center bg-gradient-to-b from-white to-gray-100">
+      <section className="relative min-h-screen flex items-center justify-center text-center bg-gradient-to-b from-blue-900 to-black">
         <div className="px-6 w-full max-w-5xl">
           <div className="profile-ring relative w-36 h-36 mx-auto mb-4 rounded-full p-[3px]">
             <img
@@ -139,7 +141,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* === Project Grid === */}
-      <section id="work" className="bg-gray-100 py-20 px-6">
+      <section id="work" className="bg-black py-20 px-6">
         <h3 className="text-center text-3xl font-bold text-gray-900 tracking-tight mb-10">
           Några av mina projekt
         </h3>
@@ -149,7 +151,7 @@ const Home: React.FC = () => {
               key={index}
               href="#"
               draggable={false}
-              className="project-card relative block cursor-pointer overflow-hidden rounded-2xl border border-gray-200 bg-gray-300/50 p-1.5 shadow-sm lg:rounded-3xl lg:p-2"
+              className="project-card relative block cursor-pointer overflow-hidden rounded-2xl border border-none bg-blue-900/50 p-1.5 shadow-sm lg:rounded-3xl lg:p-2"
             >
               <div
                 className="absolute inset-x-0 top-0 h-[1.5px]"
@@ -184,7 +186,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <div className="bg-gray-100 h-20 flex justify-center items-center">
+      <div className="bg-slate-900 h-20 flex justify-center items-center">
         <div className="inline-flex items-center gap-1 text-gray-400 hover:text-gray-900 transition-colors">
           <a href="#">Läs om fler projekt</a>
           <ArrowRightIcon className="mt-1 size-4" strokeWidth={3} />
@@ -231,6 +233,118 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* === Skill Orb Section === */}
+      <section className="bg-gray-100 text-gray-900 py-20 px-6 text-center">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-sm tracking-wide text-gray-400 uppercase mb-2">Interaktivt</p>
+          <h2 className="text-5xl font-bold mb-10">Utforska mina Skills</h2>
+
+          {/* Card wrapper */}
+          <div className="rounded-3xl border border-gray-200 bg-white shadow-sm p-8">
+
+            {/* Mobile: text box + pills */}
+            <div className="lg:hidden">
+              <div className="border border-gray-200 bg-gray-50 rounded-2xl p-6 text-center mb-6 max-w-sm mx-auto">
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  {orbSkill.icon && <img src={orbSkill.icon} width="28" height="28" alt={orbSkill.name} />}
+                  <h3 className="font-bold text-gray-900 text-lg">{orbSkill.name}</h3>
+                </div>
+                <p className="text-gray-500 text-sm leading-relaxed">{orbSkill.description}</p>
+              </div>
+              <div className="flex flex-wrap justify-center gap-2">
+                {skills.map(skill => {
+                  const isActive = orbSkill.name === skill.name;
+                  return (
+                    <button key={skill.name} onClick={() => setOrbSkill(skill)}
+                      className={`flex items-center gap-2 px-4 py-3 rounded-full border text-sm font-medium transition-all duration-200 ${isActive ? 'bg-gray-900 text-white border-gray-900' : 'bg-gray-100 text-gray-700 border-gray-200 hover:border-gray-400'}`}>
+                      {skill.icon && <img src={skill.icon} width="16" height="16" alt="" className={isActive ? 'invert' : ''} />}
+                      {skill.name}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Desktop: 5-column grid with connector lines */}
+            {/* Distribution: top 3 | left 4 | [line] center [line] | right 4 | bottom 3 */}
+            <div className="hidden lg:grid grid-cols-[1fr_32px_320px_32px_1fr] gap-y-4 items-center">
+
+              {/* Top row — TypeScript, HTML, CSS */}
+              <div className="col-span-5 flex justify-center gap-3">
+                {skills.slice(0, 3).map(skill => {
+                  const isActive = orbSkill.name === skill.name;
+                  return (
+                    <button key={skill.name} onClick={() => setOrbSkill(skill)}
+                      className={`flex items-center gap-2 px-4 py-3 rounded-full border text-sm font-medium transition-all duration-200 ${isActive ? 'bg-gray-900 text-white border-gray-900' : 'bg-gray-100 text-gray-700 border-gray-200 hover:border-gray-400'}`}>
+                      {skill.icon && <img src={skill.icon} width="16" height="16" alt="" className={isActive ? 'invert' : ''} />}
+                      {skill.name}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Left column — JavaScript, React, Tailwind, Node.js */}
+              <div className="flex flex-col gap-3 items-end">
+                {skills.slice(3, 7).map(skill => {
+                  const isActive = orbSkill.name === skill.name;
+                  return (
+                    <button key={skill.name} onClick={() => setOrbSkill(skill)}
+                      className={`flex items-center gap-2 px-4 py-3 rounded-full border text-sm font-medium transition-all duration-200 ${isActive ? 'bg-gray-900 text-white border-gray-900' : 'bg-gray-100 text-gray-700 border-gray-200 hover:border-gray-400'}`}>
+                      {skill.icon && <img src={skill.icon} width="16" height="16" alt="" className={isActive ? 'invert' : ''} />}
+                      {skill.name}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Left connector line */}
+              <div className="h-px bg-gray-300" />
+
+              {/* Center text box */}
+              <div className="border border-gray-200 bg-gray-50 rounded-2xl p-6 text-center shadow-sm">
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  {orbSkill.icon && <img src={orbSkill.icon} width="32" height="32" alt={orbSkill.name} />}
+                  <h3 className="font-bold text-gray-900 text-xl">{orbSkill.name}</h3>
+                </div>
+                <p className="text-gray-500 text-sm leading-relaxed">{orbSkill.description}</p>
+              </div>
+
+              {/* Right connector line */}
+              <div className="h-px bg-gray-300" />
+
+              {/* Right column — APIs, Python, PostgreSQL, GitHub */}
+              <div className="flex flex-col gap-3 items-start">
+                {skills.slice(7, 11).map(skill => {
+                  const isActive = orbSkill.name === skill.name;
+                  return (
+                    <button key={skill.name} onClick={() => setOrbSkill(skill)}
+                      className={`flex items-center gap-2 px-4 py-3 rounded-full border text-sm font-medium transition-all duration-200 ${isActive ? 'bg-gray-900 text-white border-gray-900' : 'bg-gray-100 text-gray-700 border-gray-200 hover:border-gray-400'}`}>
+                      {skill.icon && <img src={skill.icon} width="16" height="16" alt="" className={isActive ? 'invert' : ''} />}
+                      {skill.name}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Bottom row — Networking, Cybersecurity, Docker */}
+              <div className="col-span-5 flex justify-center gap-3">
+                {skills.slice(11).map(skill => {
+                  const isActive = orbSkill.name === skill.name;
+                  return (
+                    <button key={skill.name} onClick={() => setOrbSkill(skill)}
+                      className={`flex items-center gap-2 px-4 py-3 rounded-full border text-sm font-medium transition-all duration-200 ${isActive ? 'bg-gray-900 text-white border-gray-900' : 'bg-gray-100 text-gray-700 border-gray-200 hover:border-gray-400'}`}>
+                      {skill.icon && <img src={skill.icon} width="16" height="16" alt="" className={isActive ? 'invert' : ''} />}
+                      {skill.name}
+                    </button>
+                  );
+                })}
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* === Contact Section === */}
       <section id="contact" className="bg-gray-50 text-gray-900 py-24 px-4 text-center">
         <div className="max-w-xl mx-auto">
@@ -263,7 +377,9 @@ const Home: React.FC = () => {
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-200 bg-white hover:bg-gray-100 transition-colors duration-200 text-sm text-gray-800 shadow-sm"
             >
-              <img src="https://cdn.simpleicons.org/linkedin" width="18" height="18" alt="LinkedIn" />
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#0A66C2" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
               LinkedIn
             </a>
           </div>

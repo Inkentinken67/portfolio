@@ -27,11 +27,11 @@ body {
     background: conic-gradient(
         from var(--ring-angle),
         transparent 0%,
-        rgba(20, 60, 120, 0.4) 10%,
-        rgba(30, 100, 180, 0.7) 20%,
-        rgba(60, 160, 220, 0.8) 30%,
-        rgba(30, 100, 180, 0.7) 40%,
-        rgba(20, 60, 120, 0.4) 50%,
+        hsla(216, 71%, 27%, 0.4) 10%,
+        hsla(212, 71%, 41%, 0.7) 20%,
+        hsla(203, 70%, 55%, 0.8) 30%,
+        hsla(212, 71%, 41%, 0.7) 40%,
+        hsla(216, 71%, 27%, 0.4) 50%,
         transparent 60%
     );
     animation: ringRotate 3s linear infinite;
