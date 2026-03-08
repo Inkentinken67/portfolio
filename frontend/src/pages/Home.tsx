@@ -23,6 +23,42 @@ const projects: Project[] = [
     backgroundColor: "#047302",
     imageShadow: "#1fbf27",
   },
+  {
+    textTitle: "NanoEdge4",
+    image: NanoEdgeAirsense,
+    backgroundColor: "#730251",
+    imageShadow: "#771fbf",
+  },
+  {
+    textTitle: "NanoEdge4",
+    image: NanoEdgeAirsense,
+    backgroundColor: "#730251",
+    imageShadow: "#771fbf",
+  },
+  {
+    textTitle: "NanoEdge4",
+    image: NanoEdgeAirsense,
+    backgroundColor: "#730251",
+    imageShadow: "#771fbf",
+  },
+  {
+    textTitle: "NanoEdge4",
+    image: NanoEdgeAirsense,
+    backgroundColor: "#730251",
+    imageShadow: "#771fbf",
+  },
+  {
+    textTitle: "NanoEdge4",
+    image: NanoEdgeAirsense,
+    backgroundColor: "#730251",
+    imageShadow: "#771fbf",
+  },
+  {
+    textTitle: "NanoEdge4",
+    image: NanoEdgeAirsense,
+    backgroundColor: "#730251",
+    imageShadow: "#771fbf",
+  },
 ];
 
 type Skill = {
@@ -63,11 +99,10 @@ const Home: React.FC = () => {
 
   return (
     <main className="m-0 p-0 bg-gray-50">
-
       {/* === Hero Section === */}
-      <section className="relative min-h-screen flex items-center justify-center text-center bg-gradient-to-b from-blue-900 to-black">
+      <section className="relative min-h-screen flex items-center justify-center text-center bg-[#FFFAFA]">
         <div className="px-6 w-full max-w-5xl">
-          <div className="profile-ring relative w-36 h-36 mx-auto mb-4 rounded-full p-[3px]">
+          <div className="profile-ring relative w-50 h-50 mx-auto mb-4 rounded-full p-[5px]">
             <img
               src="/src/assets/react.svg"
               alt="Profile"
@@ -139,10 +174,10 @@ const Home: React.FC = () => {
           </svg>
         </div>
       </section>
-
+      <div className="w-full h-10 bg-blue-500"></div>
       {/* === Project Grid === */}
-      <section id="work" className="bg-black py-20 px-6">
-        <h3 className="text-center text-3xl font-bold text-gray-900 tracking-tight mb-10">
+      <section id="work" className=" bg-black py-20 px-6">
+        <h3 className="text-center text-3xl font-bold text-[#FFFAFA] tracking-tight mb-10">
           Några av mina projekt
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-screen-xl mx-auto">
@@ -157,7 +192,7 @@ const Home: React.FC = () => {
                 className="absolute inset-x-0 top-0 h-[1.5px]"
                 style={{
                   background:
-                    "linear-gradient(90deg, rgba(0,0,0,0) 5%, rgba(255,255,255,0.8) 35%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.8) 65%, rgba(0,0,0,0) 95%)",
+                    "linear-gradient(90deg, rgba(255, 255, 255, 0) 5%, rgba(255,255,255,0.8) 35%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.8) 65%, rgba(0,0,0,0) 95%)",
                 }}
               />
               <div
@@ -187,9 +222,9 @@ const Home: React.FC = () => {
       </section>
 
       <div className="bg-slate-900 h-20 flex justify-center items-center">
-        <div className="inline-flex items-center gap-1 text-gray-400 hover:text-gray-900 transition-colors">
+        <div className="inline-flex items-center gap-1 text-gray-400 hover:text-[#FFFAFA] transition-colors">
           <a href="#">Läs om fler projekt</a>
-          <ArrowRightIcon className="mt-1 size-4" strokeWidth={3} />
+          <ArrowRightIcon className="mt-1 size-4 pb-1" strokeWidth={3} />
         </div>
       </div>
 
